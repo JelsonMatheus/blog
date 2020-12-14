@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta http-equiv="CONTENT-TYPE" content="text/html" charset="UTF-8"> 
+        
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+		<meta name="robots" content="noindex">
+		
+		<title>J Projeto</title>
+		<link rel="icon" href="../icone.png">
+		
+		<!--Carregar o CSS do Boostrap-->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		
+		<!--- carregar código Latex para inserir formulas matemáticas-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=AM_CHTML"></script>
+		
+		<style type="text/css">
+			.titulo{
+				padding:5rem 0 7rem 0;
+				margin-bottom:4rem;
+				background:#009be1 url(../img/derivada.jpg);
+				border-bottom:1px solid black;
+			}
+			.info{
+			 	background-color:#d3d3d3;
+			 	padding:8px;
+			 	border-left:5px solid #00bfff;
+			 	border-radius:5px;
+			 	line-height:30px;
+			}
+			.formul{
+				font-size:0.8rem;
+				line-height:60px;
+			}
+			table{
+				border-collapse:collapse;
+				max-width:30rem;
+				margin:0 auto;
+			}
+				table, th, td,thead{
+					border: 1px solid black !important;
+				}
+				thead{
+					background-color:#44bfff;
+				}
+			body{
+				background-color:white;
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<!--navbar/cabeçalho-->
+		<header>
+			<nav class="navbar navbar-dark bg-dark ">
+				<a class="navbar-brand" href="../index.html">
+					<img src="../icone.png" width="30" height="30" class="d-inline-block align-top" alt="">
+					<b>Projetos</b>
+				</a>
+			</nav>
+		</header>
+		
+		<div class="container-fluid titulo">
+			<div class="container">
+				<h1>Derivada-Introducão</h1>
+			</div>
+		</div>
+		
+		<main>
+			<div class="container">
+				<h2 class="mb-4">Definição:</h2>
+				<p>Partindo da problemática de definir uma reta tangente ao gráfico de função `f` em um ponto `(p, f(p))`. Evidentemente tal reta precisa passar pelo ponto `(p, f(p))`, desse modo a reta fica determinada se calculamos o seu coeficiente angular.
+				Considerando então, uma reta `S` que passa pelos pontos `(p, f(p))` e `(x, f(x))`. <a href="https://www.somatematica.com.br/emedio/retas/retas7.php">(Mais sobre coeficiente angular)</a>.
+				</p>
+				<div class="row align-items-center">
+					<div class="col-sm-5 mb-3">
+						<img class="img-fluid" src="../img/grafico1.png" alt="Gráfico"/>
+					</div>
+					<div class="col-sm-7 mt-2 text-center">
+						<p class="info">Coeficiente angular de `S=\frac{f(x)-f(p)}{x-p}`</p>
+					</div>
+				</div>
+				
+				<p>Assim, quando `x` tende a `p`, o coeficiente angular de `S` tende a `f'(p)`. Onde:</p>
+				<center><p>`f'(p)=lim_(x->p) frac{f(x)-f(p)}{x-p}`</p></center>
+				</br>
+				
+				<p>Fazendo `h=x-p`, no qual `h->0` quando `x->p`. Temos:</p>
+				<center><p>`lim_(x->p) frac{f(x)-f(p)}{x-p} = lim_(h->0) frac{f(p+h)-f(p)}{h}`</p></center>
+				</br>
+				
+				<p>Observe que à medida que `x` se aproxima de `p` a reta `S` tende para a posição da reta `T`. Reta tangente ao gráfico que passa pelo ponto `(p, f(p))`, resolvendo a problemática.</p>
+				<div class="row align-items-center mb-4">
+					<div class="col-sm-5 mb-3">
+						<img class="img-fluid" src="../img/grafico2.png" alt="Gráfico"/>
+					</div>
+					<div class="col-sm-7 sm-2">
+						<blockquote class="info"><strong>Definição:</strong> sejam `f` uma função e `p` um ponto de seu domínio. O limite</br>
+						  `lim_(x->p) frac{f(x)-f(p)}{x-p}`</br></br>
+					       quando existe e é finito, denomina-se derivada de `f` em `p` e indica-se por `f'(p)`. Assim</br>
+						  `f'(p)=lim_(x->p) frac{f(x)-f(p)}{x-p}`</br></br>
+						   se `f` admite derivada em `p`, então diremos que `f` é derivável ou diferenciável em `p`.
+						   <footer class="blockquote-footer"> (Luiz Guidorizzi)</footer>
+						</blockquote>
+					</div>
+				</div>
+				
+				<br><br>
+				
+				<h2 class="mb-4">Exemplos:</h2>
+				<p>Sendo `f(x)=x^2` calcule pela definição:</p>
+				<ol type="a">
+				<li>`f'(1)`</li>
+				<li>`f'(x)`</li>
+				<li>`f'(-2)`</li>
+				</ol>
+				</br>
+				
+				<p><b>a. Solução:</b></p>
+				<p>Substituindo `p` por `1` e fatorando:</p>
+				<p class="formul"> `f'(1)=lim_(x->p) frac{f(x)-f(p)}{x-p}` = `lim_(x->1) frac{f(x)-f(1)}{x-1}` = `lim_(x->1) frac{x^2-1}{x-1}`
+				 = `lim_(x->1) frac{(x-1)(x+1)}{x-1}` = `lim_(x->1) (x+1)=2`</p>
+				<p><b>Resposta: </b>`2`</p>
+				</br>
+				
+				<p><b>b. Solução:</b></p>
+				<p>Substituindo `p` por `x` e fazendo a função composta:</p>
+				<p>`f(x)=x^2=>f(x+h)=(x+h)^2`:</p>
+				<p>Temos:</p>
+				<p class="formul">`f(x)=lim_(h->0) frac{f(p+h)-f(p)}{h}`= `lim_(h->0) frac{(x+h)^2-f(x)}{h}` 
+				= `frac{x^2+2xh+h^2-x^2}{h}` = `frac{2xh+h2}{h}` = `lim_(h->0) frac{h(2x+h)}{h}` = `lim_(h->0)(2x+h)= 2x`</p>
+				<p><b>Resposta: </b>`2x`</p>
+				<p class="info">Note que `p'(x)=2x` é a formúla que nos fornece a derivada de `p(x)=x^2`, em todo `x` real.</p>
+				<br>
+				
+				<p><b>c. Solução:</b></p>
+				<p>Com base na resposta do item <b>b</b>:</p>
+				<p class="formul">`f'(x)=2x=> f'(-2)=2*(-2)=-4`</p>
+				<p><b>Resposta: </b>`-4`</p>
+				
+				</br><br>
+				
+				<h2 class="mb-4">Tabela de derivadas:</h2>
+				<p>A partir da definição de derivadas vista acima, podemos chegar nas seguintes fórmulas. Desse modo, agilizando o porcesso de resolução de derivadas. </p>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col" width="50%"><b>`f(x)`</b></th>
+							<th scope="col" width="50%"><b>`f'(x)`</b></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>`k`</td>
+							<td>`0`</td>
+						</tr>
+						<tr>
+							<td>`x^n`</td>
+							<td>`n*x^(n-1)`</td>
+						</tr>
+						<tr>
+							<td>`e^x`</td>
+							<td>`e^x`</td>
+						</tr>
+						<tr>
+							<td>`senx`</td>
+							<td>`cosx`</td>
+						</tr>
+						<tr>
+							<td>`cosx`</td>
+							<td>`-senx`</td>
+						</tr>
+						<tr>
+							<td>`ln(x)`</td>
+							<td>`1/x`</td>
+						</tr>
+						<tr>
+							<td>`g+h`</td>
+							<td>`g'+h'`</td>
+						</tr>
+						<tr>
+							<td>`g-h`</td>
+							<td>`g'-h'`</td>
+						</tr>
+						<tr>
+							<td>`k*g`</td>
+							<td>`k*g`</td>
+						</tr>
+						<tr>
+							<td>`g*h`</td>
+							<td>`g'*h+g*h'`</td>
+						</tr>
+						<tr>
+							<td>`g/h`</td>
+							<td>`frac{g'h-g*h'}{h^2}`</td>
+						</tr>
+					</tbody>
+				</table>
+				<br>
+				<p><strong>Referências:</strong></p>
+				<ul>
+					<li>GUIDORIZZI, Hamilton Luiz,<b> Um Curso de Cálculo Volume 1.</b>
+					5ª ed. São Paulo. LTC. 2001.
+					</li>
+				</ul>
+			</div>
+		</main>
+		
+		
+		<!--Rodapé-->
+		<footer class=" mt-auto py-2 bg-light">
+			<div class="container text-center">
+				<span class="text-muted small">&copy; 2020 Jelson Matheus</span>
+			</div>
+		</footer>
+	
+	
+		<!--Plugin Boostrap-->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
+			integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
+			integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	</body>
+	
+</html>
