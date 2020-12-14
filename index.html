@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>J Projetos</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+   
+    <!--AOS Animation-->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    
+    <!--Styles  personalizados-->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!--Script AOS Animation-->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+</head>
+
+<body>
+    <header class="header-paralax">
+        <div class="container div-banner">
+            <h1>Projetos e Artigos</h1>
+            <p>Uma coleção de artigos e projetos desenvolvidos em 
+               diferentes linguagens de programação.</p>
+        </div>
+    </header>
+    
+    <main>
+        <section class="section-artigos pt-5">
+        <div class="container">
+            <h2 class="mb-5">Artigos</h2>
+            
+            <!--Modelo card:
+                ids: card | img | category | title | text | link | data
+            -->
+            <script src="js/loadArticles.js"></script>
+            
+            <div id="div-cards" class="ut-flex mt-5">
+                <div id="card" class="div-card" style="display: none" data-aos="fade-in">
+                    <img id="img" src="algoritmo.jpg">
+                    <span id="category">#</span>
+                    <div class="card-body-custom">
+                        <h4 id="title">#</h4>
+                        <p id="text">#</p>
+                    </div>
+                    <div class="card-footer-custom">
+                        <span id="data">#</span>
+                        <a id="link" href="#" class="ut-link-button">veja mais</a>
+                    </div>
+                </div>
+            </div>
+            
+            <br><br>
+        </div>
+        </section>
+        
+        <section class="section-programas pt-5">
+        <div class=container>
+            <h2 class="mb-5">Programas em Java</h2>
+            
+            <div class="ut-flex mt-5">
+                <div class="photo-container" data-aos="fade-in">
+                    <img src="img/calculadora.jpg">
+                    <div class="desc">
+                        <h4>Calculadora</h4>
+                        <p>Calculadora com suporte as quatros operações básicas da matemática.</p>
+                        <button class="btn btn-primary" data-aos="fade-left">Baixar arquivo .jar</button>
+                    </div>
+                </div>
+                <div class="photo-container" data-aos="fade-in">
+                    <img src="img/criptografia.jpg">
+                    <div class="desc">
+                        <h4>Criptográfia</h4>
+                        <p>Programa para codificar mensagens baseado em cifra de cesar.</p>
+                        <button class="btn btn-primary" data-aos="fade-left">Baixar arquivo .jar</button>
+                    </div>
+                </div>
+                <div class="photo-container" data-aos="fade-in">
+                    <img src="img/caca-palavras.jpg">
+                    <div class="desc">
+                        <h4>Caça-palavras</h4>
+                        <p>Crie caça-palavras e salve nos principais formatos de imagens.</p>
+                        <button class="btn btn-primary" data-aos="fade-left">Baixar arquivo .jar</button>
+                    </div>
+                </div>
+            </div>
+            
+            <br><br>
+        </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container text-center">
+            <span class="text-white">© 2020 Jelson Matheus</span>
+            <span class="px-2 text-white"> | </span>
+            <a class="" href="https://github.com/JelsonMatheus">
+               <span style="font-size:24px" class="fa">&#xf09b;</span>
+               Github
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    
+    <script>
+        function scrollBanner() {
+            const headerLength = document.querySelector('.header-paralax').offsetHeight;
+            const headerText = document.querySelector('.header-paralax .div-banner');
+            let scrollPos = window.scrollY;
+
+            if (scrollPos <= headerLength) {
+                headerText.style.transform =  "translateY(" + (-scrollPos / 3) +"px" + ")";
+                headerText.style.opacity = 1 - (scrollPos / headerLength);
+            }
+        }
+        
+        window.addEventListener('scroll', scrollBanner);
+        
+        /* Start animation */
+        AOS.init({
+            once: false,
+            offset: 40,
+            duration: 500,
+        });
+    </script>
+</body>
+</html>
