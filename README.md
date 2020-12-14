@@ -1,3 +1,3 @@
 # jelsonmatheus.github.io
 Portfólio pessoal!<br>
-[https://jelsonmatheus.github.io](https://jelsonmatheus.githib.io)
+https://jelsonmatheus.github.io/
