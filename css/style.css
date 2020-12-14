@@ -56,7 +56,7 @@ h4 {
 
 .header-paralax {
     background: linear-gradient(180deg, rgba(30, 30, 30, 0.5), rgba(52, 29, 8, 0.6)), 
-                url('img/bg.jpg'), #000;        
+                url('./img/bg.jpg'), #000;        
     background-size: cover;
     width: 100%;
     position: fixed;
