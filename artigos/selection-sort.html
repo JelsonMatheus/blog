@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<meta http-equiv="CONTENT-TYPE" content="text/html" charset="UTF-8"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="robots" content="noindex">
+		
+		<title>Ordenação por Seleção</title>
+		<link rel="icon" href="../icone.png">
+		
+		<!--MathJax---->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=AM_CHTML,Safe"></script>
+		
+		<!--Carregar o CSS do Boostrap-->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+			integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		
+		<link rel="stylesheet" href="../css/artigos.css">
+		<script src="../js/highlight.js"></script>
+		
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-dark bg-dark ">
+				<a class="pl-2 navbar-brand" href="../index.html">
+					<img src="../icone.png" width="30" height="30" class="d-inline-block align-top" alt="">
+					<b>Projetos</b>
+				</a>
+			</nav>
+		</header>
+		
+		<div class="container-fluid">
+			<div class="container">
+				<h1 class="text-white d-inline px-2">Algoritmo: Selection Sort</h1>
+			</div>
+		</div>
+		
+		<main>
+			<div class="container">
+			
+				<h3 class="mb-3">Introdução</h3>
+				<p>No artigo, <a href="fisher-yates.html">algoritmo de embaralhamento</a>, vimos como pegar um vetor ordenado e embaralhar de forma
+				aleatória seguindo alguns passos simples. No entanto, quando precisamos fazer o processo inverso, o caos já está instalado e queremos colocar em ordem?
+				Para essa finalidade, existem vários algoritmos como: <b>Selection sort</b>, <b>Insertion sort</b> e <b>Quick sort</b>.</p>
+				<p>Nesse artigo vamos ver o <strong>Selection sort (ordenação por seleção)</strong>, o mais simples dos três, que se baseia em selecionar
+				o menor elemento e colocar na 1⁰ posição, depois pegar o segundo menor e colocar na 2⁰ posição, assim sucessivamente com os <i>n-1</i> elementos.</p>
+			     
+			    <br>
+			    <h3 class="mb-3">Pseudocódigo</h3>
+			    <p>A ideia é bem simples, para um vetor de tamanho <i>n</i> e com os índices variando de <i>0 a n-1</i>:</p>
+			    <ol>
+			    	<li>Selecione o menor elemento e coloque na posição 1 (índice: 0);</li>
+			    	<li>Selecione o segundo menor elemento e coloque na posição 2 (índice: 1);</li>
+			    	<li>Repita o procedimento a até n-2. Observe que não precisamos verificar
+			    	o último elemento, pois, ele já estará na posição correta no final do processo;</li>
+			    </ol>
+			    <p>São necessários dois for, um para controlar a posição do elemento e outro para buscar o menor valor:</p>
+			
+<pre class="border p-3">
+n &larr; tamanho do vetor
+
+para i de 0 até n-2 faça 
+    min &larr; i
+
+    para j de (i+1) até n-1 faça
+    
+        se a[j] &lt; a[min]
+            min &larr; j
+        fim se
+        
+    fim para
+
+    troque a[i] e a[min]
+
+fim para
+</pre>
+			
+			<br>
+			<h3 class="mb-3">Javascript</h3>
+<pre class="border p-3" data-type="javascript" >
+function selectionSort(vetor){
+
+    let n = vetor.length;
+    let min = 0;
+    
+    for(let i = 0; i < (n-1); i++){
+    
+        min = i;
+        
+        <b>//Encontra o menor elemento</b>
+        for(let j = (i+1); j &lt; n; j++){
+            if(vetor[j] &lt; vetor[min]){ 
+               min=j;
+            }
+        }
+        
+        <b>//realiza a troca</b>
+        if(vetor[i] != vetor[min]){
+            const aux = vetor[i];
+            vetor[i] = vetor[min]
+            vetor[min] = aux;
+        }
+    }
+}
+</pre>
+				<br>
+				<h3 class="mb-3">Java</h3>
+<pre class="border p-3" data-type="java">
+public void selectionSort(int[] vetor){
+    int n = vetor.length; 
+    int min = 0;
+    
+    for(int i = 0; i &lt; (n-1); i++){
+    
+        min = i;
+        
+        <b>//Encontra o menor elemento</b>
+        for(int j = (i+1); j &lt; n; j++){
+            if(vetor[j] &lt; vetor[min]){
+                min = j;
+            }
+        }
+        
+        <b>//realiza a troca</b>
+        if(vetor[i] != vetor[min])){
+            int aux = vetor[i];
+            vetor[i] = vetor[min];
+            vetor[min] = aux;
+        }
+    }
+}
+</pre>
+				<br>
+				<h3 class="mb-3">Complexidade de tempo</h3>
+				<p>Esse algoritmo possui dois <code>for</code> encadeado, então vamos chamar de <b>f1</b> o laço for mais externo e <b>f2</b> o mais interno.
+				O tempo total do <i>Selection sort</i> pode ser dado pela soma de três partes:</p>
+				<ol>
+					<li>Os custos para inicializar as variáveis dentro da função como: <var>n</var> e <var>min</var>.
+			   	 	<li>O tempo para encontrar o menor elemento dentro do <b>f2</b>;
+					<li>O tempo para realizar a troca dos elementos e outras operações no <b>f1</b>.
+				</ol>
+				<p><b>No item 1:</b> os custos para inicializar as variáveis têm um tempo que depende da linguagem, máquina, compilador, etc. A soma
+				desse tempo vamos chamar de <b>c<sub>1</sub></b>.</p>
+<pre class="border p-3 code" data-type="java"">
+<b>São operações elementares, cujo o tempo para processa-las depende de outros fatores.
+E não aumenta com o valor de <var>n</var>.</b>
+
+    int n = vetor.length();
+    int min = 0;
+    for(i = 0...)
+</pre>
+				<p><b>No item 2:</b> O tempo para encontrar o menor valor é dado pelo produto da quantidade de vezes que o f2 é executado e o tempo que as
+				operações dentro do laço leva (<b>c<sub>2</sub></b>).</p>
+<pre class="border p-3 code" data-type="java"">
+for(int j = (i+1); j &lt; n; j++){
+
+     <b><i>c<sub>2</sub></i> é o custo total desse processo.</b>
+     if(vetor[j] &lt; vetor[i]){
+          min = j;
+     }
+     
+}
+</pre>
+				<p>Vamos analisar um exemplo, quando <b>n = 5</b>:</p>
+				<table class="table table-striped table-bordered text-center">
+					<thead class="thead-light"><tr>
+						<th>i = 0; i < (n-1)</th>
+						<th>j = (i+1); j &lt; n</th>
+						<th>Total</th>
+					</tr></thead>
+					<tr>
+						<td>i = 0; i &lt; 4</td><td>j = (i+1); j &lt; 5</td><td>#</td>
+					</tr>
+					<tr>
+						<td>0</td><td>1-2-3-4</td><td>4</td>
+					</tr>
+					<tr>
+						<td>1</td><td>2-3-4</td><td>3</td>
+					</tr>
+					<tr>
+						<td>2</td><td>3-4</td><td>2</td>
+					</tr>
+					<tr>
+						<td>3</td><td>4</td><td>1</td>
+					</tr>
+				</table>
+				<p>Quantidade de vezes que f2 é executado quando n = 5 é dado pela soma de uma progressão aritmética (PA):
+				1 + 2 + 3 + 4 = 10;</p>
+				<p>Agora quando o n é um número qualquer, temos:(n-1) + (n-2) + ... +1. A quantidade de vezes é dada pela fórmula da soma de uma PA:
+				<p>`S_n={(1+n-1)(n-1)}/2` = `(n²-n)/2`</p>
+				<p>Dessa forma o tempo total da <b>etapa 2</b> é `(n²-n)/2 * c_2`.</p>
+			
+				<p><b>No item 3</b>: custo de tempo é dado pelo produto da quantidade de vezes que o f1 é processado e o tempo das operações internas que
+				vamos chamar de <b>c<sub>3</sub></b>. Portando `(n-1)*c_3`.</p>
+			
+				<p>Desse modo o tempo do algoritmo é dado por:<br>
+				`c_1 + (n^2-n)/2` `* c_2 + (n-1)*c_3`</p>
+			
+				<p>Usando a notação assintótica, descartando os termos constantes e de baixar ordem o tempo do algoritmo é `Theta (n^2)`. Note que não
+				existe um melhor caso, pois, o <b>f2</b> sempre será executado `(n²-n)/2` vezes.</p>
+			
+				<h3 class="mb-3">Demonstração</h3>
+				<ol>
+					<li>A barra <b>laranja</b> é o <code>for</code> mais interno buscando o menor elemento;</li>
+					<li>A barra <b>vermelha</b> é o menor elemento atual;</li>
+					<li>A barra <b>verde</b> é o item já ordenado.</li>
+				</ol>
+				<div class="tela">
+					<div class="d-flex flex-wrap align-items-center justify-content-between">
+						<button class="btn mr-2 flex-fill" id="btnStart" onclick="start()">Start</button>
+						<button class="btn mr-2 flex-fill" onclick="onSuffle()">suffle</button>
+						<label class="mt-1 mr-1" for="speed">Speed:</label>
+						<select class="btn flex-fill mr-md-2" id="speed">
+							<option value="1">1x</option>
+							<option value="5">5x</option>
+							<option value="100">100x</option>
+							<option value="500">500x</option>
+							<option value="max">max</option>
+						</select>
+						
+						<div class="w-100 d-none d-sm-block d-md-none"></div>
+						
+						<div class="d-flex flex-grow-1 align-items-center mt-1">
+							<label class="mt-1" for="range">Tamanho:</label>
+							<input class="custom-range mx-1"type="range" min="2" max="1000" value="15" oninput="display.value=value" id="range">
+							<input class="border border-dark text-center p-0" type="text" id="display" 
+							oninput="range.value=value" value="15" size="4">
+						</div>
+					</div>
+				
+					<center><canvas id="canvas" class="border"></canvas></center>
+				
+					<div style="overflow-x:auto;" class="info w-100-60 p-2 border text-nowrap">
+						<p class="my-1"><b>Vetor: </b><span class="text-muted" id="vetorOriginal"></span></p>
+						<p class="m-0"><b>Resultado: </b><span class="text-muted"id="resultado"></span></p>
+						<p class="m-0"><b>Tempo: </b><span class="text-muted" id="labelTempo"></span></p>
+					</div>
+				</div>
+				<br><br>
+				<p><strong>Referências:</strong></p>
+				<ul>
+					<li><a class="text-dark" href="https://pt.khanacademy.org/computing/computer-science/algorithms/sorting-algorithms/a/analysis-of-selection-sort">Khan Academy-Análise do selection sort.</a></li>
+					<li><a class="text-dark" href="https://pt.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/asymptotic-notation">Khan Academy-Notação assintótica.</a></li>
+					<li><a class="text-dark" href="https://pt.m.wikipedia.org/wiki/Selection_sort">Wikipédia-Selection sort.</a>
+				</ul>
+				
+				<br><br>
+			</div>
+		</main>
+		<!--Post relacionados-->
+		<section>
+			<div class="container">
+				<h5 class="mb-2">Artigos relacionados</h5>
+				<ul>
+					<li><a class="text-info" href="fisher-yates.html">Algoritmo: Fisher-yates.</a></li>
+					<li><a class="text-info" href="insertion-sort.html">Algoritmo: Insertion Sort.</a></li>
+				</ul>
+				
+				<div style="height:1rem"></div>
+			</div>
+		</section>
+		
+		<!--Rodapé-->
+		<footer class=" mt-auto py-2 bg-light">
+			<div class="container text-center">
+				<span class="text-muted small">&copy; 2020 Jelson Matheus</span>
+			</div>
+		</footer>
+		
+		<script type="text/javascript" src="../js/drawGraphics.js"></script>
+		<script type="text/javascript" src="../js/algoritmos/selection-sort.js"></script>
+		
+		<!--Plugin Boostrap-->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
+			integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
+			integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	</body>
+</html>

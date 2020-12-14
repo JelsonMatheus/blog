@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<meta http-equiv="CONTENT-TYPE" content="text/html" charset="UTF-8"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="robots" content="noindex">
+		
+		<title>Marge-Sort</title>
+		<link rel="icon" href="../icone.png">
+		
+		<!--Carregar o CSS do Boostrap-->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		
+		<link rel="stylesheet" href="../css/artigos.css">
+		<!--MathJax-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=AM_CHTML,safe"></script>
+		<!--Highlight-->
+		<script src="../js/highlight.js"></script>
+		
+		<style>
+			.figure{
+				max-width:30rem;
+				width:100%;
+			}
+			.figure>img{
+				width:100%;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-dark bg-dark ">
+				<a class="pl-2 navbar-brand" href="../index.html">
+					<img src="../icone.png" width="30" height="30" class="d-inline-block align-top" alt="">
+					<b>Projetos</b>
+				</a>
+			</nav>
+		</header>
+		
+		<div class="container-fluid">
+		    <div class="container">
+		        <h1 class="text-white d-inline px-2">Algoritmo: Merge-Sort</h1>
+		    </div>
+		</div>
+		
+		<main>
+			<div class="container">
+				<h3 class="mb-3">Introdução</h3>
+				<p><strong>Merge sort</strong> é um algoritmo de ordenação que se baseia no paradigma: dividir-para-conquistar. Ele dividir o
+				problema maior, em subproblemas cada vez menores até chegar no caso base, para essa finalidade ele usa a recursividade.</p>
+				<p>Os três passos básicos do merge sort são:</p>
+				<ol>
+					<li>Dividir o vetor maior pela metade, até chegar no caso base (vetor com 1 elemento);</li>
+					<li>Conquista, resolve (organiza) cada subproblemas criado recursivamente;</li>
+					<li>União, que está diretamente ligado ao passo da conquista, mescla cada 2 subarrays em um.</li>
+				</ol>
+				
+				<center><figure class="figure">
+					<img class="border" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Merge_sort_algorithm_diagram.svg/623px-Merge_sort_algorithm_diagram.svg.png"  alt="Merge Sort imagem">	
+					<figcaption class="small text-muted text-right">Imagem da Wikipédia</figcaption>
+				</figure></center>
+				
+				<p>Um detalhe importante é que, embora a imagem mostre passos simultâneos para simplificar a execução do algoritmo, o
+				computador realiza um procedimento por vez! Esse comportamento pode ser mudado usando <b>Threads</b>.
+				</p>
+				<br>
+				<h3 class="mb-3">Pseudocódigo</h3>
+<pre class="border p-3">
+<b>mergeSort</b>(a[],início,fim)
+   <b>se</b> início &lt; fim
+      meio  &larr; (início + fim)/2
+      
+      mergeSort(a[],início,meio) <i class="text-muted">//Ordena a parte esquerda</i>
+      mergeSort(a[],meio+1, fim)  <i class="text-muted">//Ordena a parte direita</i>
+      merge(a[],início,meio,fim);
+   <b>fim_se</b>
+<b>fim_mergeSort</b>
+   
+<b>merge</b>(a[],início,meio,fim)
+
+   tamEsq &larr; meio - início + 1 <i class="text-muted">//tamanho do subvetor esquerdo</i>
+   tamDir &larr; fim - meio <i class="text-muted">//tamanho do subvetor direito</i>
+   
+   inicializar vetor l[tamEsq] <i class="text-muted">//Vetor temporário esquerdo</i>
+   inicializar vetor r[tamDir] <i class="text-muted">//Vetor temporário direito</i>
+   
+   <b>para</b> i &larr; 0 <b>até</b> tamEsq - 1 <b>faça</b>
+      l[i] &larr; a[início + i]
+      
+   <b>para</b> j &larr; 0 <b>até</b> tamDir - 1 <b>faça</b>
+      r[j] &larr; a[meio + 1 + j]
+      
+   k &larr; inicio
+   indiceL &larr; 0
+   indiceR &larr; 0
+   
+   <i class="text-muted">//cópia o elementos do vetor r e l para o vetor original</i>
+   <b>enquanto</b> indiceL &lt; tamEsq <b>e</b> indiceR &lt; tamDir <b>faça</b>
+      <b>se</b> l[indiceL] &lt; r[indiceR]
+         a[k] &larr; l[indiceL]
+         indiceL++
+      <b>senão</b>
+         a[k] &larr; r[indiceR]
+         indiceR++
+      <b>fim_se</b>
+      k++
+   <b>fim_enquanto</b>
+   
+   <i class="text-muted">//cópia os elementos restante de R ou L para o vetor original</i>
+   <b>enquanto</b> indiceL &lt; tamEsq <b>faça</b>
+      a[k] &larr; l[indiceL]
+      indiceL++
+      k++
+   <b>fim_enquanto</b>
+   
+   <b>enquanto</b> indiceR &lt; tamDir <b>faça</b>
+      a[k] &larr; r[indiceR]
+      indiceR++
+      k++
+   <b>fim_enquanto</b>
+<b>fim_merge</b>
+</pre>
+				<br>
+				<h3 class="mb-3">Javascript</h3>
+<pre class="border p-3" data-type="javascript">
+function mergeSort(vetor, start, end){
+   if(start &lt; end){
+      const middle = Math.floor((start + end)/2);
+      mergeSort(vetor,start,middle);
+      mergeSort(vetor,middle+1,end);
+      merge(vetor,start,middle,end);
+   }
+}
+
+function merge(vetor,start,middle,end){
+   
+   const sizeLeft = middle - start + 1;
+   const sizeRight = end - middle;
+   const l = [];
+   const r = [];
+	
+   let indexL = 0;
+   let indexR = 0;
+   let k = start;
+	
+   for(let i = 0; i &lt; sizeLeft; i++)
+      l[i] = vetor[start + i];
+	
+   for(let j = 0; i &lt; sizeRight; j++)
+      r[j] = vetor[middle + 1 + j];
+	
+   while(indexL &lt; sizeLeft && indexR &lt; sizeRight){
+      if(l[indexL] &lt; r[indexR]){
+         vetor[k] = l[indexL];
+         indexL++;
+      }else{
+         vetor[k] = r[indexR];
+         indexR++;
+      }
+      k++;
+   }
+	
+   while(indexL &lt; sizeLeft){
+      vetor[k] = l[indexL];
+      indexL++;
+      k++;
+   }
+	
+   while(indexR &lt; sizeRight){
+      vetor[k] = r[indexR];
+      indexR++;
+      k++;
+   }
+}
+</pre>
+				<br>
+				<h3 class="mb-3"x>Java</h3>
+				
+<pre class="border p-3" data-type="java">
+public void mergeSort(int[] vetor, int start, int end){
+   if(start &lt; end){
+      int middle = (start + end)/2;
+      mergeSort(vetor,start,middle);
+      mergeSort(vetor,middle+1,end);
+      merge(vetor,start,middle,end);
+   }
+}
+
+public merge(int[] vetor,int start,int middle, int end){
+   
+   int sizeLeft = middle - start + 1;
+   int sizeRight = end - middle;
+   int[] l = new int[sizeLeft];
+   int[] r = new int[sizeRight];
+	
+   int indexL = 0, indexR = 0;
+   int k = start;
+	
+   for(int i = 0; i &lt; sizeLeft; i++)
+      l[i] = vetor[start + i];
+	
+   for(int j = 0; i &lt; sizeRight; j++)
+      r[j] = vetor[middle + 1 + j];
+	
+   while(indexL &lt; sizeLeft && indexR &lt; sizeRight){
+      if(l[indexL] &lt; r[indexR]){
+         vetor[k] = l[indexL];
+         indexL++;
+      }else{
+         vetor[k] = r[indexR];
+         indexR++;
+      }
+      k++;
+   }
+	
+   while(indexL &lt; sizeLeft){
+      vetor[k] = l[indexL];
+      indexL++;
+      k++;
+   }
+	
+   while(indexR &lt; sizeRight){
+      vetor[k] = r[indexR];
+      indexR++;
+      k++;
+   }
+}
+</pre>
+				<br>
+				<h3 class="mb-3">Análise de complexidade</h3>
+				<p>Para definir a complexidade de tempo vamos analisar os três passos do mergeSort:</p>
+				<ol>
+					<li>A <b>divisão</b> do vetor em subvetores menores, que leva um tempo constante `\Theta(1)`, pois o único passo é calcular o ponto médio do mesmo;</li>
+					<li>A <b>conquista</b>, o tempo para ordenar dois arrays de tamanho `n/2` recursivamente;</li>
+					<li>A <b>União</b> que intercala dois subvetores em um.</li>
+				</ol>
+				<p>Sendo <b>n</b> o tamanho do vetor, o passo da união, de forma simplificada, leva um tempo `n*c`. Pois é necessário fazer a cópia do lado <b>esquerdo</b>
+				(`n//2`) e <b>direito</b> (`n//2`) do array, um custo linear `n*c_1`.</p>
+				
+<pre class="p-3 border" data-type="java">
+for(int i = 0; i &lt; sizeLeft; i++)
+     l[i] = vetor[start + i];
+	
+for(int j = 0; i &lt; sizeRight; j++)
+     r[j] = vetor[middle + 1 + j];
+</pre>
+
+				<p>E depois copiar novamente todos os elementos para o vetor original, ou seja, um tempo `n*c_2`.</p>
+
+<pre class="p-3 border" data-type="java">
+while(indexL &lt; sizeLeft && indexR &lt; sizeRight){
+   if(l[indexL] &lt; r[indexR]){
+      vetor[k] = l[indexL];
+      indexL++;
+   }else{
+      vetor[k] = r[indexR];
+      indexR++;
+   }
+   k++;
+}
+	
+while(indexL &lt; sizeLeft){
+   vetor[k] = l[indexL];
+   indexL++;
+   k++;
+}
+	
+while(indexR &lt; sizeRight){
+   vetor[k] = r[indexR];
+   indexR++;
+   k++;
+}
+</pre>
+				<p>Assim, realizando a somatória:</p>
+				<p>`sendo \ c=c_1+c_2`</p>
+				<center><p>`(n*c_1)+(n*c_2) =` `n*(c_1+c_2) =` `n*c`</p></center>
+				
+				<p>Em notação assintônica, `\Theta(n)`. Pensando no tempo de divisão `\Theta(1)` e
+				<b>união</b> juntos, descartamos o termo constante, ficando apenas com `Theta(n)`.</p>
+				<p>Dessa forma, podemos definir o tempo de execução do MargeSort para um array de <b>n</b> elementos como a soma do tempo de 2 execuções do mesmos, para vetores de tamanho `\frac{n}{2}` mais
+				o custo `\Theta(n)`. Obtendo:</p>
+				
+				<center><p>`T(n) = 2T(\frac{n}{2}) + \Theta(n)`, &nbsp;<b><i>para</i></b>&nbsp;  `n > 1`</p></center>
+				
+				<p>E o tempo para ordenar esse dois vetores com `n//2` elementos cada, é igual a soma de 4 mergeSort em array de `n//4`, mais o tempo de intercalação dos dois, ou seja `2 * (Theta(n))/2 = Theta(n)`,
+				visto que o problema maior foi dividio por 2, assim sucessivamente.</p>
+				<p>Vamos analisar a imagem abaixo, lembrando que `Theta(n) = n*c`.</p>
+				
+				<center><figure class="figure">
+					<img class="border" src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Rekursionsbaum.JPG" alt="Merge Sort imagem">	
+					<figcaption class="small text-muted text-right">Imagem da Wikipédia</figcaption>
+				</figure></center>
+				
+				<p>Para cada nível, o número de subproblemas dobra e o tempo de intercalação cai pela metade, se cancelando, e resultando em um custo de sempre `c*n`. E quando existir um único elemento no vetor o tempo de
+				intercalação será constante `Theta(1)`, porém existirá `n` problema, totalizando novamente `n*c`. Portanto a duração total do mergeSort é a soma de todos os custos, `cn` para todos os níveis `l` da árvore (`l*cn`).
+				E o valor de `l` pode ser definido por `l = \log_{2} n + 1`. Para um vetor de tamanho 8, temos:</p>
+				
+				<center><p>`log_{2} 8 + 1 =` `3 + 1 = 4`</p></center>
+				
+				<p>quatro níveis, n = 8, 4, 2, 1. Logo a complexidade de tempo do algoritmo para todos os caso é `n*(log_{2}n + 1)`, em Notação assintótica: `Theta(nlogn)`.</p>
+				
+				<p><b>Uma demonstração alternativa</b> é resolver a relação de recorrência:</p>
+				
+				<center><p>`T(n) = {(Theta(1),),(2T(n//2)+Theta(n),):} {:(se \ n = 1),(se \ n > 1):}`</p></center>
+				
+				
+				<p>Vamos usar o método de expandir a expressão para o n-énesimo termo e depois fazer a conjectura:</p>
+				<div class="pl-1"style="font-size:0.9rem;">
+					<p>`T(n) = 2T(n/2)+n=`</p>
+					<p>`2(2T(n/4)+n/2)+n = 2^2T(n/2^2)+2n =`</p>
+					<p>`2^2(2T(n/2^3)+n/4)+2n = 2^3T(n/2^3)+3n =`</p>
+					<p>`2^3(2T(n/2^4)+n/8)+3n = 2^4T(n/2^4)+4n`</p>
+				</div>
+				<p>Observando o padrão, podemos deduzir (conjecturar) que, após `k` expansões, chegaremos na equação:</p>
+				<center><p>`T(n)=2^k*T(n/2^k)+k*n`</p></center>
+					
+				<p>E para satisfazer a condição, `T(1) = Theta(1)`, temos:</p>
+				<center><p>`n/2^k = 1 => n = 2^k => k = log_2(n)`</p></center>
+				
+				<p>Fazendo a substituição e aplicando as propriedades logarítmicas:</p>
+				<div class="pl-1" style="font-size:1rem;">
+					<p>`T(n)=2^k*T(n/2^k)+k*n=`</p>
+					<p>`2^(log_2(n))*T(n/2^(log_2(n)))+log_2(n)*n=`</p>
+					<p>`n*T(n/n) + log_2(n)*n =`</p>
+					<p>`n*T(1) + log_2(n)*n =`</p>
+					<p>`n*Theta(1) + log_2(n)*n = Theta(nlogn)`</p>
+				</div>
+				<p>Portanto, provado mais uma vez: `Theta(nlogn).`</p>
+				
+				<p></p>
+				<br>
+				
+				<h3 class="mb-3">Demonstração</h3>
+				<div class="tela">
+					<div class="d-flex flex-wrap align-items-center justify-content-between">
+						<button class="btn mr-2 flex-fill" id="btnStart" onclick="start()">Start</button>
+						<button class="btn mr-2 flex-fill" onclick="onSuffle()">suffle</button>
+						<label class="mt-1 mr-1" for="speed">Speed:</label>
+						<select class="btn flex-fill mr-md-2" id="speed">
+							<option value="1">1x</option>
+							<option value="5">5x</option>
+							<option value="100">100x</option>
+							<option value="500">500x</option>
+							<option value="max">max</option>
+						</select>
+				
+						<div class="w-100 d-none d-sm-block d-md-none"></div>
+						
+						<div class="d-flex flex-grow-1 align-items-center mt-1">
+							<label class="mt-1" for="range">Tamanho:</label>
+							<input class="custom-range mx-1"type="range" min="2" max="1000" value="15" oninput="display.value=value" id="range">
+							<input class="border border-dark text-center p-0" type="text" id="display" 
+							oninput="range.value=value" value="15" size="4">
+						</div>
+					</div>
+				
+					<center><canvas id="canvas" class="border"></canvas></center>
+				
+					<div style="overflow-x:auto;" class="info w-100-60 p-2 border text-nowrap">
+						<p class="my-1"><b>Vetor: </b><span class="text-muted" id="vetorOriginal"></span></p>
+						<p class="m-0"><b>Resultado: </b><span class="text-muted"id="resultado"></span></p>
+						<p class="m-0"><b>Tempo: </b><span class="text-muted" id="labelTempo"></span></p>
+					</div>
+				</div>
+				<br><br>
+				<p><strong>Referências:</strong></p>
+				<ul>
+					<li><a class="text-dark" href="https://pt.khanacademy.org/computing/computer-science/algorithms/merge-sort/a/analysis-of-merge-sort">Khan Academy-Análise do Merge sort.</a></li>
+					<li><a class="text-dark" href="https://pt.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/asymptotic-notation">Khan Academy-Notação assintótica.</a></li>
+					<li><a class="text-dark" href="https://pt.m.wikipedia.org/wiki/Merge_sort">Wikipédia-Merge sort.</a></li>
+					<li><a class="text-dark" href="https://pt.m.wikipedia.org/wiki/Resolu%C3%A7%C3%A3o_de_rela%C3%A7%C3%B5es_de_recorr%C3%AAncia">Wikipédia-Relações de recorrência.</a></li-->
+				</ul>
+				<br><br>
+			</div>
+		<!--Post relacionados-->
+		<section>
+			<div class="container">
+				<h5 class="mb-2">Artigos relacionados</h5>
+				<ul>
+					<li><a class="text-info" href="insertion-sort.html">Algoritmo: Insertion sort.</a></li>
+					<li><a class="text-info" href="selection-sort.html">Algoritmo: Selection sort.</a></li>
+				</ul>
+		
+				<div style="height:1rem"></div>
+			</div>
+		</section>
+				
+		<!--Rodapé-->
+		<footer class=" mt-auto py-2 bg-light">
+			<div class="container text-center">
+				<span class="text-muted small">&copy; 2020 Jelson Matheus</span>
+			</div>
+		</footer>
+				
+		<script src="../js/drawGraphics.js"></script>
+		<script src="../js/algoritmos/marge-sort.js"></script>
+				
+		<!--Plugin Boostrap-->
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	</body>
+</html>

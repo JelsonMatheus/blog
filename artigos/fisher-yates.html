@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-br" >
+	<head>
+		<meta http-equiv="CONTENT-TYPE" content="text/html" charset="UTF-8"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="robots" content="noindex">
+	
+		<title>Algoritmo de embaralhamento</title>
+		<link rel="icon" href="../icone.png">
+		
+		<!--MathJax-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=AM_CHTML,Safe"></script>
+		
+		<!--Carregar o CSS do Boostrap-->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+			integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		
+		<link rel="stylesheet" href="../css/artigos.css">
+		<script src="../js/highlight.js"></script>
+		
+	</head>
+	
+	<body>
+		
+		<header>
+			<nav class="navbar navbar-dark bg-dark ">
+				<a class="pl-2 navbar-brand" href="../index.html">
+					<img src="../icone.png" width="30" height="30" class="d-inline-block align-top" alt="">
+					<b>Projetos</b>
+				</a>
+			</nav>
+		</header>
+		
+		<div class="container-fluid">
+			<div class="container">
+				<h1 class="text-white d-inline px-2">Algoritmos de Embaralhamento</h1>
+			</div>
+		</div>
+		
+		<main>
+			<div class="container">
+			
+				<h3 class ="mb-3">Introdução</h3>
+				<p>Em certas situações faz-se necessário ter uma lista embaralhada de modo aleatório, como por exemplo no famoso jogo de cartas e
+				para obter esse resultado existem vários algoritmos! Nesse artigo vamos replicar o <strong>Shuffle de Fisher</strong>.</p>
+				<p>Fisher-Yates é um algoritmo para gerar uma permutação aleatória de uma sequência finita - em termos simples,
+				o algoritmo embaralha a sequência. O embaralhamento de Fisher-Yates tem o nome de Ronald Fisher e Frank Yates , que o descreveram
+				pela primeira vez, e também é conhecido como o embaralhamento de Knuth após Donald Knuth. <a href="https://en.m.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">(Wikipédia)</a></p>
+				
+				<br>
+				<h3 class="mb-3">Pseudocódigo</h3>
+				<p>Sendo um vetor com <i>n</i> elementos de índice variando de <i>0 a n-1</i>:</p>
+				<ol>
+					<li>Seja <i>i</i> o índice da última posição <i>(n-1)</i>, sorteia
+					<i>j</i>, tal que <i>0 &le; j &le; i</i>;</li>
+					<li>Troque o elemento da posição <i>i</i> com o elemento da posição <i>j</i>;</li>
+					<li>Decremente <i>i</i> (subtraia 1 de <i>i</i>);</li>
+					<li>Repita o passo 2 e 4, enquanto <i>i > 0</i>.</li>
+				</ol>
+				
+<pre class="border p-3">
+para embaralhar um array <i><b>a</b></i> de <b>n</b> elemento:
+
+<i>n</i> &larr; tamanho do vetor
+<b>para</b> <i>i</i> <b>de</b> <i>n-1</i> até <i>1</i> <b>faça</b>
+     j &larr; um número aleatório tal que 0 &le; j &le; i
+     troque a[j] e a[i]
+</pre>
+				
+				<br>
+				<h3 class="mb-3">Javascript</h3>
+				<p><b>OBS:</b> O método <code>Math.random()</code> retornar um número decimal <i>x</i>, tal que, <i>0 &le; x &lt; 1</i>. Portando 
+				para gerar um número entre <i>0 e i</i>, inclusivos, devos fazer: <i>x &times; (i+1)</i>. E usar o método <code>Math.floor()</code> para arredondar para <b>inteiro</b>.</p>
+<pre class="border p-3" data-type="javascript">
+function embalharar(vetor){
+	
+   const n = vetor.length;
+	
+   for(let i = (n-1); i>0; i--){
+	
+       let j = Math.floor(Math.random() * (i+1));
+		
+       let aux = vetor[i];
+       vetor[i] = vetor[j];
+       vetor[j] = aux;
+   }
+}
+</pre>
+
+<br>
+				<h3 class="mb-3">Java</h3>
+				<p><b>OBS:</b> O método <code>.nextInt(n)</code> da classe <code>Random</code> retornar um número inteiro <i>x</i>, sendo <i>0 &le; x &lt; n</i>. Portando 
+				 para gerar um número entre <i>0 e i</i>, inclusivos, devos fazer: <code>.nextInt(i+1)</code>.</p>
+				
+<pre class="border p-3" data-type="java" >
+public void embalharar(int[] vetor){
+	
+   int n = vetor.length;
+   Random gerador = new Random();
+	
+   for(int i = (n-1); i>0; i--){
+	
+       int j = gerador.nextInt(i+1);
+		
+       int aux = vetor[i];
+       vetor[i] = vetor[j];
+       vetor[j] = aux;
+   }
+}
+</pre>
+				<br>
+				<h3 class="mb-3">Complexidade de tempo</h3>
+				<p>Vamos analisar o algoritmo, sendo <b><i>n</i></b> o tamanho do array, o laço for vai de <b><i>n-1</i> até <i>1</i></b>, portanto será executado <b><i>(n-1)</i></b> vezes e para cada
+				execução serão feitas algumas operações que vão resultar na troca dos elementos. Esses procedimentos possuem um custo, um tempo para 
+				ser executadas que varia discordo com a máquina, compilador, linguagem, etc.</p>
+
+<pre class="border" data-type="java">
+    (Exemplo em java)
+    ...
+    for(int i = (n-1); i>0; i--){
+					
+       int j = gerador.nextInt(i+1);
+       int aux = vetor[i];
+       vetor[i] = vetor[j];
+       vetor[j] = aux;
+       ...
+</pre>
+				<p>A soma desses tempo gasto vamos chamar de <b>c<sub>1</sub></b>, então o custo
+				total por todas as interações no for é <b><i>c<sub>1</sub> × (n-1)</i></b>. Também existem alguns overhead (custo adicional, como para inicializar a variável <i>n</i> e <i>i</i>,
+				que é realizado apenas uma vez), esse custo, vamos chamar <b>c<sub>2</sub></b>.</p>
+
+<pre class="border" data-type="java">
+    (Exemplo em java)
+    
+    int n = vetor.length;
+    Random gerador = new Random();
+    ...
+    int i = (n-1);
+    ...
+</pre>
+				<p>Dessa forma o tempo total do algoritmo é:</p>
+				
+				<p>`c_1 × (n-1) + c_2` `=` `c_1 × n - c_1 + c_2`</p>
+				
+				<p>Repare que é uma função do 1° grau. Usando a notação big-`O`, descartamos os termos constantes e de baixa ordem, desse modo o tempo de execução do algoritmo é `O(n)`, tendo uma taxa de crescimento linear.
+				Também percebemos que no pior e melhor caso o tempo de execução continua sendo n, logo, podendo ser classificado, de uma forma mais restrita usando a notação Big Theta, como `\Theta(n)`. Essa notação é usada para expressa o limite superior
+				e inferior do tempo de execução de um algoritmo.</p>
+				<br>
+				<h3 class="mb-4">Demonstração:</h3>
+				<div class="tela">
+					<div class="d-flex flex-wrap align-items-center justify-content-between">
+						<button class="btn mr-2 flex-fill" id="btnStart" onclick="start()">Start</button>
+						<button class="btn mr-2 flex-fill" onclick="onSuffle()">suffle</button>
+						<label class="mt-1 mr-1" for="speed">Speed:</label>
+						<select class="btn flex-fill mr-md-2" id="speed">
+							<option value="1">1x</option>
+							<option value="5">5x</option>
+							<option value="100">100x</option>
+							<option value="500">500x</option>
+							<option value="max">max</option>
+						</select>
+				
+						<div class="w-100 d-none d-sm-block d-md-none"></div>
+						
+						<div class="d-flex flex-grow-1 align-items-center mt-1">
+							<label class="mt-1" for="range">Tamanho:</label>
+							<input class="custom-range mx-1"type="range" min="2" max="1000" value="15" oninput="display.value=value" id="range">
+							<input class="border border-dark text-center p-0" type="text" id="display" 
+							oninput="range.value=value" value="15" size="4">
+						</div>
+					</div>
+					
+					<center><canvas id="canvas" class="border"></canvas></center>
+				
+					<div style="overflow-x:auto;" class="info w-100-60 p-2 border text-nowrap">
+						<p class="my-1"><b>Vetor: </b><span class="text-muted" id="vetorOriginal"></span></p>
+						<p class="m-0"><b>Resultado: </b><span class="text-muted"id="resultado"></span></p>
+						<p class="m-0"><b>Tempo: </b><span class="text-muted" id="labelTempo"></span></p>
+					</div>
+				</div>
+				<br><br>
+				<p><strong>Referências:</strong></p>
+				<ul>
+					<li><a class="text-dark" href="https://en.m.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">Wikipedia-Fisher–Yates shuffle.</a></li>
+					<li><a class="text-dark" href="https://pt.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/asymptotic-notation">Khan Academy-Notação assintótica.</a></li>
+				</ul>
+				
+				<br><br>
+				
+			</div>
+		</main>
+		
+		<!--Post relacionados-->
+		<section>
+			<div class="container">
+				<h5 class="mb-2">Artigos relacionados</h5>
+				<ul>
+					<li><a class="text-info" href="selection-sort.html">Algoritmo: Selection Sort.</a></li>
+					<li><a class="text-info" href="insertion-sort.html">Algoritmo: Insertion Sort.</a></li>
+				</ul>
+			</div>
+		</section>
+		
+		<!--Rodapé-->
+		<footer class=" mt-auto py-2 bg-light">
+			<div class="container text-center">
+				<span class="text-muted small">&copy; 2020 Jelson Matheus</span>
+			</div>
+		</footer>
+		
+		<script type="text/javascript" src="../js/drawGraphics.js"></script>
+		<script type="text/javascript" src="../js/algoritmos/suffle.js"></script>
+		<!--Plugin Boostrap-->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
+			integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
+			integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	</body>
+</html>

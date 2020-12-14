@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<meta http-equiv="CONTENT-TYPE" content="text/html" charset="UTF-8"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="robots" content="noindex">
+		
+		<title>Ordenação por Inserção</title>
+		<link rel="icon" href="../icone.png">
+		
+		<!--MathJax---->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=AM_CHTML,Safe"></script>
+		
+		<!--Carregar o CSS do Boostrap-->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+			integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		
+		<link rel="stylesheet" href="../css/artigos.css">
+		<script src="../js/highlight.js"></script>
+		
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-dark bg-dark ">
+				<a class="pl-2 navbar-brand" href="../index.html">
+					<img src="../icone.png" width="30" height="30" class="d-inline-block align-top" alt="">
+					<b>Projetos</b>
+				</a>
+			</nav>
+		</header>
+		
+		<div class="container-fluid">
+			<div class="container">
+				<h1 class="text-white d-inline px-2">Algoritmo: Insertion Sort</h1>
+			</div>
+		</div>
+		
+		<main>
+			<div class="container">
+				<h3 class="mb-3">Introdução</h3>
+				<p>Continuando com a série de algoritmos de ordenação, agora é a vez do <strong>Insertion sort</strong> (ordenação por inserção).
+				Que se baseia em inserir um elemento por vez na sua posição correta, a ideia é semelhante a uma pessoa
+				organizando as cartas de um baralho na mão.</p>
+				<p>Supondo que você está em um jogo, as cartas na sua mão já estão ordenadas e você recebe uma nova carta, então
+				você a coloca na posição correta, inserindo de modo que as cartas que você já possui continuem ordenadas. É essa a
+				lógica por trás do Insertion sort!</p>
+				
+				<center><figure class="figure">
+					<img class="border" src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif" alt="Insertion Sort">	
+					<figcaption class="small text-muted text-right">Imagem da Wikipédia</figcaption>
+				</figure></center>
+				
+				<br>
+				
+				<h3 class="mb-3">Pseudocódigo</h3>
+
+<pre class="border p-3">
+n &larr; tamanho do vetor
+
+para i de 1 até n-1
+
+     aux &larr; vetor[i]
+     j &larr; i
+	
+     enquanto (j > 0) e (vetor[j-1] > aux) faça
+		
+         vetor[j] &larr; vetor[j-1]
+         j &larr; j - 1
+		
+     fim_enquanto
+	
+     vetor[j] &larr; aux
+	
+fim_para
+</pre>
+
+				<br>
+				
+				<h3 class="mb-3">Javascript</h3>
+<pre class="border p-3" data-type="javascripit">
+function insertionSort(vetor){
+
+    const n = vetor.length
+	
+    for(let i = 1; i &lt; n; i++){
+	
+        let aux = vetor[i];
+        let j = i;
+		
+		
+        while((j > 0) && (vetor[j-1]>aux)){
+			
+            vetor[j] = vetor[j-1];
+            j--
+        }
+		
+        vetor[j] = aux;
+    }
+}
+</pre>
+				<br>
+				
+				<h3 class="mb-3">Java</h3>
+<pre class="border p-3" data-type="java">
+public void InsertionSort(int[] vetor){
+
+    int n = vetor.length;
+    
+    for(int i = 1; i &lt; n; i++){
+    
+        int aux = vetor[i];
+        int j = i;
+        
+        while(j > 0 && vetor[j-1] > aux){
+        
+            vetor[j] = vetor[j-1];
+            j--
+        }
+        
+        vetor[j] = aux;
+    }
+}
+</pre>
+				<br>
+				
+				<h3 class="mb-3">Análise de complexidade</h3>
+				<p>Pegando como exemplo o código em Java e fazendo uma análise assintótica.
+				O tempo total do algoritmo pode ser divido em 3 partes:</p>			
+				<p><b>Parte 1</b>: o tempo computacional para inicializar as variáveis fora do <code>for</code>, <b>c<sub>1</sub></b>.</p>
+<pre class="border p-3">
+int n = vetor.length;
+    
+   int i = 1;
+</pre>	
+				<p><b>Parte 2</b>: o custo total das operações elementares que dependem apenas do <code>for</code>, `(n-1)*c_2`.</p>
+<pre class="border p-3">
+for(int i = 1; i &lt; n; i++){
+    
+    int aux = vetor[i];
+    int j = i;
+    
+    ...
+}
+vetor[j] = aux;
+</pre>	
+				<p><b>Parte 3</b>: o custo total das operações dentro do while, `k * c_3`.</p>
+<pre class="border p-3">
+while(j > 0 && vetor[j-1] > aux){
+    
+    vetor[j] = vetor[j-1];
+    j--
+}
+</pre>
+				<p>Precisamos determinar o número <b>k</b> de vezes que as operações dentro do while é executada. Para isso olhemos a tabela abaixo,
+				quando o tamanho do vetor é <b>n</b> e pensando no pior caso, no qual o elemento que está sendo inserido é menor
+				que todos os elementos a sua esquerda, ou seja, <code>aux &lt; vetor[j-1]</code> é sempre <code>true</code>:</p>
+				<table class="table table-striped table-bordered text-center">
+					<thead class="thead-light"><tr>
+						<th>i = 1; i &lt; n</th>
+						<th>j > 0; true</th>
+						<th>Total</th>
+					</tr></thead>
+					<tr>
+						<td>1</td><td>1</td><td>1</td>
+					</tr>
+					<tr>
+						<td>2</td><td>2 1</td><td>2</td>
+					</tr>
+					<tr>
+						<td>3</td><td>3 2 1</td><td>3</td>
+					</tr>
+					<tr>
+						<td>4</td><td>4 3 2 1</td><td>4</td>
+					</tr>
+					<tr>
+						<td>•••</td><td>•••</td><td>•••</td>
+					</tr>
+					<tr>
+						<td>n-1</td><td>(n-1) ... 1</td><td>n-1</td>
+					</tr>
+				</table>
+				<p>Analisando a tabela, temos a seguinte <b>PA</b>: 1 + 2 + 3 + 4 + ... + (n-1).</p>
+				<p>Calculando a soma de todos os elemento:</p>
+				<p class="formul">`S_n = {(1+n-1)(n-1)}/2 =``(n^2-n)/2`</p>
+				<p>Desse modo, o tempo total do while é: `c_3 * (n²-n)/2`.</p>
+				
+				<p>Mas nem sempre o Insertion sort vai levar esse tempo. No melhor caso quando o vetor
+				já está ordenado, <code>aux &lt; vetor[j-1]</code> é sempre <code>false</code>, o tempo necessário
+				seria a penas para percorrer o vetor uma única vez, já que apenas o for seria executado:</p>
+				<table class="table table-striped table-bordered text-center">
+					<thead class="thead-light"><tr>
+						<th>i = 1; i &lt; n</th>
+						<th>j > 0; false</th>
+						<th>Total(while)</th>
+				</tr></thead>
+					<tr>
+						<td>1</td><td>-</td><td>0</td>
+					</tr>
+					<tr>
+						<td>2</td><td>-</td><td>0</td>
+					</tr>
+					<tr>
+						<td>•••</td><td>•••</td><td>•••</td>
+					</tr>
+					<tr>
+						<td>n-1</td><td>-</td><td>0</td>
+					</tr>
+				</table>
+				<p>Assim sendo, o tempo do algoritmo pode ser:</p>
+				<ul class="formul">
+					<li>`c_1+c_2*(n-1)+(n^2-n)/2*c_3`. `Theta(n^2)`;</li>
+					<br>
+					<li>`c_1+(n-1)*c_2`. `Theta(n)`.</li>
+				</ul>
+				<br>
+				<p>De forma geral a complexidade de tempo do Insertion sort é `O(n^2)`. Sendo:</p>
+				<ul>
+					<li>No melhor caso: `Theta(n)`;</li>
+					<li>No pior caso: `Theta(n^2)`.</li>
+				</ul>
+				<h3 class="mb-3">Demonstração</h3>
+				<div class="tela">
+					<div class="d-flex flex-wrap align-items-center justify-content-between">
+						<button class="btn mr-2 flex-fill" id="btnStart" onclick="start()">Start</button>
+						<button class="btn mr-2 flex-fill" onclick="onSuffle()">suffle</button>
+						<label class="mt-1 mr-1" for="speed">Speed:</label>
+						<select class="btn flex-fill mr-md-2" id="speed">
+							<option value="1">1x</option>
+							<option value="5">5x</option>
+							<option value="100">100x</option>
+							<option value="500">500x</option>
+							<option value="max">max</option>
+						</select>
+				
+						<div class="w-100 d-none d-sm-block d-md-none"></div>
+						
+						<div class="d-flex flex-grow-1 align-items-center mt-1">
+							<label class="mt-1" for="range">Tamanho:</label>
+							<input class="custom-range mx-1"type="range" min="2" max="1000" value="15" oninput="display.value=value" id="range">
+							<input class="border border-dark text-center p-0" type="text" id="display" 
+							oninput="range.value=value" value="15" size="4">
+						</div>
+					</div>
+				
+					<center><canvas id="canvas" class="border"></canvas></center>
+				
+					<div style="overflow-x:auto;" class="info w-100-60 p-2 border text-nowrap">
+						<p class="my-1"><b>Vetor: </b><span class="text-muted" id="vetorOriginal"></span></p>
+						<p class="m-0"><b>Resultado: </b><span class="text-muted"id="resultado"></span></p>
+						<p class="m-0"><b>Tempo: </b><span class="text-muted" id="labelTempo"></span></p>
+					</div>
+				</div>
+				<br><br>
+				<p><strong>Referências:</strong></p>
+				<ul>
+					<li><a class="text-dark" href="https://pt.khanacademy.org/computing/computer-science/algorithms/sorting-algorithms/a/analysis-of-insertion-sort">Khan Academy-Análise do insertion sort.</a></li>
+					<li><a class="text-dark" href="https://pt.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/asymptotic-notation">Khan Academy-Notação assintótica.</a></li>
+					<li><a class="text-dark" href="https://pt.m.wikipedia.org/wiki/Insertion_sort">Wikipédia-Insertion sort.</a>
+				</ul>
+				
+				<br><br>
+			</div>
+		</main>
+				<!--Post relacionados-->
+		<section>
+			<div class="container">
+				<h5 class="mb-2">Artigos relacionados</h5>
+				<ul>
+					<li><a class="text-info" href="selection-sort.html">Algoritmo: Selection sort.</a></li>
+					<li><a class="text-info" href="fisher-yates.html">Algoritmo: Fisher-yates.</a></li>
+					<li><a class="text-info" href="merge-sort.html" >Algoritmo: Merge sort</a></li>
+				</ul>
+				
+				<div style="height:1rem"></div>
+			</div>
+		</section>
+				
+				<!--Rodapé-->
+		<footer class=" mt-auto py-2 bg-light">
+			<div class="container text-center">
+				<span class="text-muted small">&copy; 2020 Jelson Matheus</span>
+			</div>
+		</footer>
+				
+		<script src="../js/drawGraphics.js"></script>
+		<script src="../js/algoritmos/insertion-sort.js"></script>
+				
+		<!--Plugin Boostrap-->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	</body>
+</html>
