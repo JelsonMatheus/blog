@@ -1,0 +1,252 @@
+/* Fonts: Merriweather and Open Sans Condensed */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Open+Sans+Condensed:wght@300&display=swap');
+
+/* Font: Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+:root {
+  --header-length: 36rem;
+}
+
+main {
+    position: relative;
+    top: var(--header-length);
+    padding-bottom: 2rem;
+    background: #333; /*#E7E3DA*/
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #FFF;
+}
+footer {
+    position: relative;
+    top: calc(var(--header-length) - 2rem);
+    padding: 1rem;
+    background: #444;
+    font-size: 0.9rem;
+}
+    footer a {
+        color: white;
+    }
+    footer a:hover,
+    footer a:active{
+        text-decoration: none;
+        color: #3399FF;
+    }
+
+h2 {
+    font-family: 'Merriweather', serif;
+}
+
+h2::after {
+    content: "";
+    display: block;
+    position: absolute;
+    background: #E59400;
+    width: 30px;
+    height: 3px;
+}
+
+h4 {
+    color: #555;
+    font-weight: 600;
+    font-family: Sans-Serif;
+    font-family: 1.2rem;
+}
+
+
+.header-paralax {
+    background: linear-gradient(180deg, rgba(30, 30, 30, 0.5), rgba(52, 29, 8, 0.6)), 
+                url('../bg.jpg'), #000;        
+    background-size: cover;
+    width: 100%;
+    position: fixed;
+    height: var(--header-length);
+}
+
+.div-banner {
+    margin-top: calc(var(--header-length) / 2 - 100px);
+    text-align: center;
+}
+    .div-banner > h1 {
+        font-family: 'Merriweather', serif;
+        font-size: calc(1.8em + 3vw);
+        background: linear-gradient(45deg, #E59400 0%, #3390FF 30%, #FFF 80%, #E59400 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200% 200%;
+        animation: mymove 8s infinite;
+    }
+    .div-banner > p {
+        font-family: 'Open Sans Condensed', sans-serif;
+        font-size: calc(1em + 1.2vw);
+        color: white;
+    }
+
+.section-programas {
+    background: white;
+    color: #000;
+}
+
+.section-artigos .ut-flex {
+    align-items: flex-start;
+}
+
+.div-card:nth-child(n + 2) {
+    margin-top: 4rem;
+}
+
+.div-card {
+    position: relative;
+    width: 20rem;
+    margin: auto;
+    background: #FFF;
+    border-radius: 10px;
+    box-shadow: 0 8px 6px -6px black;
+}
+    .div-card > img {
+        width:100%;
+        height:11rem;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 10px 10px 0px 0px;
+    }
+    .div-card > span {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        padding: 0.2rem 0.3rem;
+        background: #3399FF;
+        color: white;
+        font-size: 1.2rem;
+        border-radius: 5px;
+    }
+    
+.card-body-custom{
+    color: #000;
+    padding: 1rem;
+}
+    .card-body-custom > p {
+        margin: 0px;
+        font-size: 0.9rem;
+    }
+
+.card-footer-custom {
+    display: flex;
+    padding: 0rem 1rem 1rem 1rem;
+}
+    .card-footer-custom > span {
+        color: gray;
+    }
+    .card-footer-custom > a {
+        margin-left: auto;
+        padding: 0.2rem;
+    }
+
+.photo-container:nth-child(n + 2) {
+    margin-top: 4rem;
+}
+.photo-container {
+    width: 100%;
+    margin: auto;
+}
+    .photo-container > img {
+        width:100%;
+        object-fit: cover;
+        object-position: center;
+        border: 1px solid gray;
+    }
+    
+.desc {
+    overflow: hidden;
+    padding: 1rem 1px 1px 1px;
+    color: #000;
+}
+    .desc > button {
+        width: 11rem;
+        margin-left: calc(100% - 11rem);
+    }
+
+
+/*
+ *********** Utilities *************
+*/
+
+.ut-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.ut-link-button {
+    display: inline-block;
+    background: white;
+    color: #3399FF;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #3399FF;
+}
+.ut-link-button:hover, 
+.ut-link-button:active {
+    background: #3399FF;
+    color: white;
+    text-decoration: none;
+}
+
+@keyframes mymove {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+
+@media only screen and (min-width: 600px) {
+    .div-card:nth-child(n),
+    .photo-container:nth-child(n) {
+        margin: 0px;
+    }
+    
+    .div-card,
+    .photo-container {
+        width: 48%;
+    }
+    
+    .div-card:nth-child(n + 3),
+    .photo-container:nth-child(n + 3) {
+        margin-top: 3rem;
+    }
+}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+
+@media only screen and (min-width:901px) {
+    section > .container {
+        max-width: 90%;
+    }
+    
+    .div-card:nth-child(n),
+    .photo-container:nth-child(n) {
+        margin: 0px;
+    }
+    
+    .div-card,
+    .photo-container {
+        max-width: 18rem;
+        width: 32%;
+    }
+    
+    .div-card:nth-child(n + 4),
+    .photo-container:nth-child(n + 4) {
+        margin-top: 3rem;
+    }
+    
+}
