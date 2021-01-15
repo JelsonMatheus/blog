@@ -249,4 +249,8 @@ h4 {
         margin-top: 3rem;
     }
     
+    .div-card:nth-child(5) {
+        margin-right: 32%;
+    }
+    
 }
