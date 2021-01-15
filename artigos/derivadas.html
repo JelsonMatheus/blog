@@ -8,77 +8,38 @@
 		<meta name="robots" content="noindex">
 		
 		<title>J Projeto</title>
-		<link rel="icon" href="../icone.png">
 		
-		<!--Carregar o CSS do Boostrap-->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+   
 		<!--- carregar código Latex para inserir formulas matemáticas-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=AM_CHTML"></script>
-		
-		<style type="text/css">
-			.titulo{
-				padding:5rem 0 7rem 0;
-				margin-bottom:4rem;
-				background:#009be1 url(../img/derivada.jpg);
-				border-bottom:1px solid black;
-			}
-			.info{
-			 	background-color:#d3d3d3;
-			 	padding:8px;
-			 	border-left:5px solid #00bfff;
-			 	border-radius:5px;
-			 	line-height:30px;
-			}
-			.formul{
-				font-size:0.8rem;
-				line-height:60px;
-			}
-			table{
-				border-collapse:collapse;
-				max-width:30rem;
-				margin:0 auto;
-			}
-				table, th, td,thead{
-					border: 1px solid black !important;
-				}
-				thead{
-					background-color:#44bfff;
-				}
-			body{
-				background-color:white;
-				border: 1px solid black;
-			}
-		</style>
+        
+        <link rel="stylesheet" href="../css/artigos.css">
 	</head>
 	
 	<body>
 		<!--navbar/cabeçalho-->
 		<header>
-			<nav class="navbar navbar-dark bg-dark ">
-				<a class="navbar-brand" href="../index.html">
-					<img src="../icone.png" width="30" height="30" class="d-inline-block align-top" alt="">
-					<b>Projetos</b>
-				</a>
+			<nav class="nav-custom">
+			    <a href="../index.html">
+			        <b>Home</b>
+			    </a>
 			</nav>
 		</header>
 		
-		<div class="container-fluid titulo">
-			<div class="container">
-				<h1>Derivada-Introducão</h1>
-			</div>
-		</div>
-		
 		<main>
 			<div class="container">
-				<h2 class="mb-4">Definição:</h2>
+			    
+				<h1>Derivada-Introducão</h1>
+				
 				<p>Partindo da problemática de definir uma reta tangente ao gráfico de função `f` em um ponto `(p, f(p))`. Evidentemente tal reta precisa passar pelo ponto `(p, f(p))`, desse modo a reta fica determinada se calculamos o seu coeficiente angular.
 				Considerando então, uma reta `S` que passa pelos pontos `(p, f(p))` e `(x, f(x))`. <a href="https://www.somatematica.com.br/emedio/retas/retas7.php">(Mais sobre coeficiente angular)</a>.
 				</p>
 				<div class="row align-items-center">
-					<div class="col-sm-5 mb-3">
-						<img class="img-fluid" src="../img/grafico1.png" alt="Gráfico"/>
+					<div class="col-sm-5 mb-3 text-center">
+						<img class="img-fluid" src="https://www.infoescola.com/wp-content/uploads/2019/05/img_5ce595b44aacf.png" alt="Gráfico"/>
+					    <span class="text-muted small">www.infoescola.com</span>
 					</div>
 					<div class="col-sm-7 mt-2 text-center">
 						<p class="info">Coeficiente angular de `S=\frac{f(x)-f(p)}{x-p}`</p>
@@ -87,25 +48,26 @@
 				
 				<p>Assim, quando `x` tende a `p`, o coeficiente angular de `S` tende a `f'(p)`. Onde:</p>
 				<center><p>`f'(p)=lim_(x->p) frac{f(x)-f(p)}{x-p}`</p></center>
-				</br>
+				<br>
 				
 				<p>Fazendo `h=x-p`, no qual `h->0` quando `x->p`. Temos:</p>
 				<center><p>`lim_(x->p) frac{f(x)-f(p)}{x-p} = lim_(h->0) frac{f(p+h)-f(p)}{h}`</p></center>
-				</br>
-				
-				<p>Observe que à medida que `x` se aproxima de `p` a reta `S` tende para a posição da reta `T`. Reta tangente ao gráfico que passa pelo ponto `(p, f(p))`, resolvendo a problemática.</p>
+				<br>
+		
 				<div class="row align-items-center mb-4">
-					<div class="col-sm-5 mb-3">
-						<img class="img-fluid" src="../img/grafico2.png" alt="Gráfico"/>
-					</div>
-					<div class="col-sm-7 sm-2">
-						<blockquote class="info"><strong>Definição:</strong> sejam `f` uma função e `p` um ponto de seu domínio. O limite</br>
-						  `lim_(x->p) frac{f(x)-f(p)}{x-p}`</br></br>
-					       quando existe e é finito, denomina-se derivada de `f` em `p` e indica-se por `f'(p)`. Assim</br>
-						  `f'(p)=lim_(x->p) frac{f(x)-f(p)}{x-p}`</br></br>
+					<div class="col-sm-6">
+						<blockquote class="border p-2"><strong>Definição:</strong> sejam `f` uma função e `p` um ponto de seu domínio. O limite<br>
+						  `lim_(x->p) frac{f(x)-f(p)}{x-p}`<br><br>
+					       quando existe e é finito, denomina-se derivada de `f` em `p` e indica-se por `f'(p)`. Assim<br>
+						  `f'(p)=lim_(x->p) frac{f(x)-f(p)}{x-p}`<br><br>
 						   se `f` admite derivada em `p`, então diremos que `f` é derivável ou diferenciável em `p`.
 						   <footer class="blockquote-footer"> (Luiz Guidorizzi)</footer>
 						</blockquote>
+					</div>
+					
+					<div class=" col-sm-6 text-center">
+					    <img class="img-fluid border" src="https://upload.wikimedia.org/wikipedia/commons/8/87/Derivada.svg">
+					    <span class="text-muted small">pt.wikipedia.org</span>
 					</div>
 				</div>
 				
@@ -114,18 +76,18 @@
 				<h2 class="mb-4">Exemplos:</h2>
 				<p>Sendo `f(x)=x^2` calcule pela definição:</p>
 				<ol type="a">
-				<li>`f'(1)`</li>
-				<li>`f'(x)`</li>
-				<li>`f'(-2)`</li>
+				    <li>`f'(1)`</li>
+				    <li>`f'(x)`</li>
+				     <li>`f'(-2)`</li>
 				</ol>
-				</br>
+				<br>
 				
 				<p><b>a. Solução:</b></p>
 				<p>Substituindo `p` por `1` e fatorando:</p>
 				<p class="formul"> `f'(1)=lim_(x->p) frac{f(x)-f(p)}{x-p}` = `lim_(x->1) frac{f(x)-f(1)}{x-1}` = `lim_(x->1) frac{x^2-1}{x-1}`
 				 = `lim_(x->1) frac{(x-1)(x+1)}{x-1}` = `lim_(x->1) (x+1)=2`</p>
 				<p><b>Resposta: </b>`2`</p>
-				</br>
+				<br>
 				
 				<p><b>b. Solução:</b></p>
 				<p>Substituindo `p` por `x` e fazendo a função composta:</p>
@@ -142,7 +104,7 @@
 				<p class="formul">`f'(x)=2x=> f'(-2)=2*(-2)=-4`</p>
 				<p><b>Resposta: </b>`-4`</p>
 				
-				</br><br>
+				<br><br>
 				
 				<h2 class="mb-4">Tabela de derivadas:</h2>
 				<p>A partir da definição de derivadas vista acima, podemos chegar nas seguintes fórmulas. Desse modo, agilizando o porcesso de resolução de derivadas. </p>
@@ -212,9 +174,9 @@
 		
 		
 		<!--Rodapé-->
-		<footer class=" mt-auto py-2 bg-light">
+		<footer class="footer-custom py-2">
 			<div class="container text-center">
-				<span class="text-muted small">&copy; 2020 Jelson Matheus</span>
+				<span class="small">&copy; 2020 Jelson Matheus</span>
 			</div>
 		</footer>
 	

@@ -8,37 +8,41 @@
 		<title>Ordenação por Seleção</title>
 		<link rel="icon" href="../icone.png">
 		
-		<!--MathJax---->
+		<!--MathJax-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=AM_CHTML,Safe"></script>
 		
-		<!--Carregar o CSS do Boostrap-->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-			integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+   
+        <link rel="stylesheet" href="../css/artigos.css">
 		
-		<link rel="stylesheet" href="../css/artigos.css">
-		<script src="../js/highlight.js"></script>
-		
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+                document.querySelectorAll('pre').forEach((block) => {
+                    hljs.highlightBlock(block);
+                });
+            });
+        </script>
 	</head>
+	
 	<body>
+	    
+	    <!--navbar/cabeçalho-->
 		<header>
-			<nav class="navbar navbar-dark bg-dark ">
-				<a class="pl-2 navbar-brand" href="../index.html">
-					<img src="../icone.png" width="30" height="30" class="d-inline-block align-top" alt="">
-					<b>Projetos</b>
-				</a>
+			<nav class="nav-custom">
+			    <a href="../index.html">
+			        <b>Home</b>
+			    </a>
 			</nav>
 		</header>
-		
-		<div class="container-fluid">
-			<div class="container">
-				<h1 class="text-white d-inline px-2">Algoritmo: Selection Sort</h1>
-			</div>
-		</div>
 		
 		<main>
 			<div class="container">
 			
-				<h3 class="mb-3">Introdução</h3>
+				<h1>Selection Sort</h1>
+				
 				<p>No artigo, <a href="fisher-yates.html">algoritmo de embaralhamento</a>, vimos como pegar um vetor ordenado e embaralhar de forma
 				aleatória seguindo alguns passos simples. No entanto, quando precisamos fazer o processo inverso, o caos já está instalado e queremos colocar em ordem?
 				Para essa finalidade, existem vários algoritmos como: <b>Selection sort</b>, <b>Insertion sort</b> e <b>Quick sort</b>.</p>
@@ -87,14 +91,14 @@ function selectionSort(vetor){
     
         min = i;
         
-        <b>//Encontra o menor elemento</b>
+        //Encontra o menor elemento
         for(let j = (i+1); j &lt; n; j++){
             if(vetor[j] &lt; vetor[min]){ 
                min=j;
             }
         }
         
-        <b>//realiza a troca</b>
+        //realiza a troca
         if(vetor[i] != vetor[min]){
             const aux = vetor[i];
             vetor[i] = vetor[min]
@@ -114,14 +118,14 @@ public void selectionSort(int[] vetor){
     
         min = i;
         
-        <b>//Encontra o menor elemento</b>
+        //Encontra o menor elemento
         for(int j = (i+1); j &lt; n; j++){
             if(vetor[j] &lt; vetor[min]){
                 min = j;
             }
         }
         
-        <b>//realiza a troca</b>
+        //realiza a troca
         if(vetor[i] != vetor[min])){
             int aux = vetor[i];
             vetor[i] = vetor[min];
@@ -200,19 +204,15 @@ for(int j = (i+1); j &lt; n; j++){
 				existe um melhor caso, pois, o <b>f2</b> sempre será executado `(n²-n)/2` vezes.</p>
 			
 				<h3 class="mb-3">Demonstração</h3>
-				<ol>
-					<li>A barra <b>laranja</b> é o <code>for</code> mais interno buscando o menor elemento;</li>
-					<li>A barra <b>vermelha</b> é o menor elemento atual;</li>
-					<li>A barra <b>verde</b> é o item já ordenado.</li>
-				</ol>
+				
 				<div class="tela">
 					<div class="d-flex flex-wrap align-items-center justify-content-between">
-						<button class="btn mr-2 flex-fill" id="btnStart" onclick="start()">Start</button>
-						<button class="btn mr-2 flex-fill" onclick="onSuffle()">suffle</button>
+						<button class="btn btn-primary mr-2 flex-fill" id="btnStart" onclick="start(this)">Start</button>
+						<button class="btn btn-primary mr-2 flex-fill" onclick="reset()">suffle</button>
 						<label class="mt-1 mr-1" for="speed">Speed:</label>
-						<select class="btn flex-fill mr-md-2" id="speed">
+						<select class="btn border flex-fill mr-md-2" id="speed">
 							<option value="1">1x</option>
-							<option value="5">5x</option>
+							<option value="5" selected>5x</option>
 							<option value="100">100x</option>
 							<option value="500">500x</option>
 							<option value="max">max</option>
@@ -260,16 +260,17 @@ for(int j = (i+1); j &lt; n; j++){
 			</div>
 		</section>
 		
+		
 		<!--Rodapé-->
-		<footer class=" mt-auto py-2 bg-light">
+		<footer class="footer-custom py-2">
 			<div class="container text-center">
-				<span class="text-muted small">&copy; 2020 Jelson Matheus</span>
+				<span class="small">&copy; 2020 Jelson Matheus</span>
 			</div>
 		</footer>
 		
-		<script type="text/javascript" src="../js/drawGraphics.js"></script>
-		<script type="text/javascript" src="../js/algoritmos/selection-sort.js"></script>
-		
+		<script src= "../js/Graph.js"></script>
+		<script src="../js/selectionSort.js"></script>
+	
 		<!--Plugin Boostrap-->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
 			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

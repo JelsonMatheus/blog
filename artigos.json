@@ -6,13 +6,6 @@
     "data":"04/04/2020",
 	"categoria":"Matemática"},
     
-    {"titulo":"Lógica proporcional",
-    "texto":"Transforma formúlas da lógica proporcional para a notação polonesa.",
-    "link":"artigos/logica-matematica.html",
-    "img":"img/matematica.jpg", 
-    "data":"11/04/2020",
-    "categoria":"Matemática"},
-    
     {"titulo":"Algoritmo de embaralhamento",
     "texto":"Fisher-Yates é um algoritmo para gerar uma permutação aleatória.",
     "link":"artigos/fisher-yates.html",

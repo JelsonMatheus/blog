@@ -1,0 +1,47 @@
+/* Fonts: Merriweather and Open Sans Condensed */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Open+Sans+Condensed:wght@300&display=swap');
+
+/* Font: Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+main {
+    font-family: 'Montserrat', Sans-Serif;
+}
+
+h1 {
+    margin: 4rem 0rem 4rem 0rem;
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Merriweather', Serif;
+}
+
+h2, h3 {
+    font-size: 1.5rem;
+    color: #555;
+    font-family: 'Merriweather', Serif;
+}
+canvas {
+    width: 100%;
+    height: ;
+}
+.nav-custom{
+    padding: 0.5rem;
+    background: #333;
+    text-align: center;
+}
+    .nav-custom b{
+        font-size: 1.2rem;
+        color: white;
+    }
+
+.footer-custom {
+    background: #333;
+    color: white;
+}
+
+@media only screen and (min-width: 600px) {
+    .tela {
+        width: 75%;
+        margin: auto;
+    }
+}

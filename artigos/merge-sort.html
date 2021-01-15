@@ -8,14 +8,23 @@
 		<title>Marge-Sort</title>
 		<link rel="icon" href="../icone.png">
 		
-		<!--Carregar o CSS do Boostrap-->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		
-		<link rel="stylesheet" href="../css/artigos.css">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+   
 		<!--MathJax-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=AM_CHTML,safe"></script>
-		<!--Highlight-->
-		<script src="../js/highlight.js"></script>
+		
+        <link rel="stylesheet" href="../css/artigos.css">
+		
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+                document.querySelectorAll('pre').forEach((block) => {
+                    hljs.highlightBlock(block);
+                });
+            });
+        </script>
 		
 		<style>
 			.figure{
@@ -28,24 +37,21 @@
 		</style>
 	</head>
 	<body>
+		
+	    <!--navbar/cabeçalho-->
 		<header>
-			<nav class="navbar navbar-dark bg-dark ">
-				<a class="pl-2 navbar-brand" href="../index.html">
-					<img src="../icone.png" width="30" height="30" class="d-inline-block align-top" alt="">
-					<b>Projetos</b>
-				</a>
+			<nav class="nav-custom">
+			    <a href="../index.html">
+			        <b>Home</b>
+			    </a>
 			</nav>
 		</header>
 		
-		<div class="container-fluid">
-		    <div class="container">
-		        <h1 class="text-white d-inline px-2">Algoritmo: Merge-Sort</h1>
-		    </div>
-		</div>
-		
 		<main>
 			<div class="container">
-				<h3 class="mb-3">Introdução</h3>
+			    
+				<h1>Merge Sort </h1>
+				
 				<p><strong>Merge sort</strong> é um algoritmo de ordenação que se baseia no paradigma: dividir-para-conquistar. Ele dividir o
 				problema maior, em subproblemas cada vez menores até chegar no caso base, para essa finalidade ele usa a recursividade.</p>
 				<p>Os três passos básicos do merge sort são:</p>
@@ -66,59 +72,59 @@
 				<br>
 				<h3 class="mb-3">Pseudocódigo</h3>
 <pre class="border p-3">
-<b>mergeSort</b>(a[],início,fim)
-   <b>se</b> início &lt; fim
+mergeSort(a[], início, fim)
+   se início &lt; fim
       meio  &larr; (início + fim)/2
       
-      mergeSort(a[],início,meio) <i class="text-muted">//Ordena a parte esquerda</i>
-      mergeSort(a[],meio+1, fim)  <i class="text-muted">//Ordena a parte direita</i>
-      merge(a[],início,meio,fim);
-   <b>fim_se</b>
-<b>fim_mergeSort</b>
+      mergeSort(a[], início, meio) //Ordena a parte esquerda
+      mergeSort(a[], meio+1, fim) //Ordena a parte direita
+      merge(a[], início, meio, fim);
+   fim_se
+fim_mergeSort
    
-<b>merge</b>(a[],início,meio,fim)
+merge(a[], início, meio, fim)
 
-   tamEsq &larr; meio - início + 1 <i class="text-muted">//tamanho do subvetor esquerdo</i>
-   tamDir &larr; fim - meio <i class="text-muted">//tamanho do subvetor direito</i>
+   tamEsq &larr; meio - início + 1  //tamanho do subvetor esquerdo
+   tamDir &larr; fim - meio  //tamanho do subvetor direito
    
-   inicializar vetor l[tamEsq] <i class="text-muted">//Vetor temporário esquerdo</i>
-   inicializar vetor r[tamDir] <i class="text-muted">//Vetor temporário direito</i>
+   inicializar vetor l[tamEsq] //Vetor temporário esquerdo
+   inicializar vetor r[tamDir] //Vetor temporário direito
    
-   <b>para</b> i &larr; 0 <b>até</b> tamEsq - 1 <b>faça</b>
+   para i &larr; 0 até tamEsq - 1 faça
       l[i] &larr; a[início + i]
       
-   <b>para</b> j &larr; 0 <b>até</b> tamDir - 1 <b>faça</b>
+   para j &larr; 0 até tamDir - 1 faça
       r[j] &larr; a[meio + 1 + j]
       
    k &larr; inicio
    indiceL &larr; 0
    indiceR &larr; 0
    
-   <i class="text-muted">//cópia o elementos do vetor r e l para o vetor original</i>
-   <b>enquanto</b> indiceL &lt; tamEsq <b>e</b> indiceR &lt; tamDir <b>faça</b>
-      <b>se</b> l[indiceL] &lt; r[indiceR]
+   //cópia o elementos do vetor r e l para o vetor original
+   enquanto indiceL &lt; tamEsq e indiceR &lt; tamDir faça
+      se l[indiceL] &lt; r[indiceR]
          a[k] &larr; l[indiceL]
          indiceL++
-      <b>senão</b>
+      senão
          a[k] &larr; r[indiceR]
          indiceR++
-      <b>fim_se</b>
+      fim_se
       k++
-   <b>fim_enquanto</b>
+   fim_enquanto
    
-   <i class="text-muted">//cópia os elementos restante de R ou L para o vetor original</i>
-   <b>enquanto</b> indiceL &lt; tamEsq <b>faça</b>
+   //cópia os elementos restante de R ou L para o vetor original
+   enquanto indiceL &lt; tamEsq faça
       a[k] &larr; l[indiceL]
       indiceL++
       k++
-   <b>fim_enquanto</b>
+   fim_enquanto
    
-   <b>enquanto</b> indiceR &lt; tamDir <b>faça</b>
+   enquanto indiceR &lt; tamDir faça
       a[k] &larr; r[indiceR]
       indiceR++
       k++
-   <b>fim_enquanto</b>
-<b>fim_merge</b>
+   fim_enquanto
+fim_merge
 </pre>
 				<br>
 				<h3 class="mb-3">Javascript</h3>
@@ -146,7 +152,7 @@ function merge(vetor,start,middle,end){
    for(let i = 0; i &lt; sizeLeft; i++)
       l[i] = vetor[start + i];
 	
-   for(let j = 0; i &lt; sizeRight; j++)
+   for(let j = 0; j &lt; sizeRight; j++)
       r[j] = vetor[middle + 1 + j];
 	
    while(indexL &lt; sizeLeft && indexR &lt; sizeRight){
@@ -333,13 +339,13 @@ while(indexR &lt; sizeRight){
 				<h3 class="mb-3">Demonstração</h3>
 				<div class="tela">
 					<div class="d-flex flex-wrap align-items-center justify-content-between">
-						<button class="btn mr-2 flex-fill" id="btnStart" onclick="start()">Start</button>
-						<button class="btn mr-2 flex-fill" onclick="onSuffle()">suffle</button>
+						<button class="btn btn-primary mr-2 flex-fill" id="btnStart" onclick="start(this)">Start</button>
+						<button class="btn btn-primary mr-2 flex-fill" onclick="reset()">suffle</button>
 						<label class="mt-1 mr-1" for="speed">Speed:</label>
-						<select class="btn flex-fill mr-md-2" id="speed">
+						<select class="btn border flex-fill mr-md-2" id="speed">
 							<option value="1">1x</option>
 							<option value="5">5x</option>
-							<option value="100">100x</option>
+							<option value="100" selected>100x</option>
 							<option value="500">500x</option>
 							<option value="max">max</option>
 						</select>
@@ -384,17 +390,17 @@ while(indexR &lt; sizeRight){
 				<div style="height:1rem"></div>
 			</div>
 		</section>
-				
+		
 		<!--Rodapé-->
-		<footer class=" mt-auto py-2 bg-light">
+		<footer class="footer-custom py-2">
 			<div class="container text-center">
-				<span class="text-muted small">&copy; 2020 Jelson Matheus</span>
+				<span class="small">&copy; 2020 Jelson Matheus</span>
 			</div>
 		</footer>
-				
-		<script src="../js/drawGraphics.js"></script>
-		<script src="../js/algoritmos/marge-sort.js"></script>
-				
+		
+		<script src= "../js/Graph.js"></script>
+		<script src="../js/mergeSort.js"></script>
+	
 		<!--Plugin Boostrap-->
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
