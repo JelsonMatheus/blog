@@ -213,6 +213,7 @@ h4 {
     .div-card:nth-child(n),
     .photo-container:nth-child(n) {
         margin: 0px;
+        border: 2px solid blue;
     }
     
     .div-card,
@@ -229,9 +230,6 @@ h4 {
 /* tablet, landscape iPad, lo-res laptops ands desktops */
 
 @media only screen and (min-width:901px) {
-    section > .container {
-        max-width: 90%;
-    }
     
     .div-card:nth-child(n),
     .photo-container:nth-child(n) {
@@ -250,7 +248,7 @@ h4 {
     }
     
     .div-card:nth-child(5) {
-        margin-right: 32%;
+        margin-right: 33.3%;
     }
     
 }
