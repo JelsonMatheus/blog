@@ -237,8 +237,8 @@ h4 {
     
     .div-card,
     .photo-container {
-        max-width: 18rem;
-        width: 32.3%;
+        max-width: 20rem;
+        width: 33.3%;
     }
     
     .div-card:nth-child(n + 4),
@@ -247,7 +247,7 @@ h4 {
     }
     
     .div-card:nth-child(5) {
-        margin-right: 33.3%;
+        margin-right: 35.3%;
     }
     
 }
