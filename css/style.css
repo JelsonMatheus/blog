@@ -229,6 +229,9 @@ h4 {
 /* tablet, landscape iPad, lo-res laptops ands desktops */
 
 @media only screen and (min-width:901px) {
+    .ut-flex {
+        justify-content: center;
+    }
     
     .div-card:nth-child(n),
     .photo-container:nth-child(n) {
@@ -238,16 +241,25 @@ h4 {
     .div-card,
     .photo-container {
         max-width: 20rem;
-        width: 33.3%;
+        width: 32%;
+        margin: 1rem !important;
     }
     
+    /*.div-card,
+    .photo-container {
+        max-width: 20rem;
+        width: 33%;
+    }*/
+    
+    /*
     .div-card:nth-child(n + 4),
     .photo-container:nth-child(n + 4) {
         margin-top: 3rem;
-    }
+    }*/
     
+    /*
     .div-card:nth-child(5) {
-        margin-right: 35.3%;
-    }
+        margin-right: 35%;
+    }*/
     
 }
