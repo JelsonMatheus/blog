@@ -2,21 +2,21 @@
 	{"titulo":"Introducão-Derivadas",
 	"texto":"Introdução rápida sobre derivadas, além de alguns exemplo básicos.",
     "link":"blog/artigos/derivadas.html",
-    "img":"blog/img/matematica.jpg",
+    "img":"img/matematica.jpg",
     "data":"04/04/2020",
 	"categoria":"Matemática"},
     
     {"titulo":"Algoritmo de embaralhamento",
     "texto":"Fisher-Yates é um algoritmo para gerar uma permutação aleatória.",
     "link":"blog/artigos/fisher-yates.html",
-    "img":"blog/img/algoritmo.jpg",
+    "img":"img/algoritmo.jpg",
     "data":"18/04/2020",
     "categoria":"Algoritmo"},
     
     {"titulo":"Algoritmo: Selection Sort",
     "texto":"Selection Sort é um algoritmo de ordenação de tempo &Theta;(n<sup>2</sup>).",
     "link":"blog/artigos/selection-sort.html",
-    "img":"blog/img/algoritmo.jpg",
+    "img":"img/algoritmo.jpg",
     "data":"20/04/2020",
     "categoria":"Algoritmo"
     },
@@ -24,7 +24,7 @@
     {"titulo":"Algoritmo: Insertion Sort",
     "texto":"Insertion sort é um algoritmo de ordenação de tempo O(n<sup>2</sup>).",
     "link":"blog/artigos/insertion-sort.html",
-    "img":"blog/img/algoritmo.jpg",
+    "img":"img/algoritmo.jpg",
     "data":"23/04/2020",
     "categoria":"Algoritmo"
     },
