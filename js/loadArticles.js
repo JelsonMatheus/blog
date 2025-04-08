@@ -1,5 +1,5 @@
 (function loadArticles() {
-    fetch("../artigos.json")
+    fetch("https://jelsonmatheus.github.io/blog/artigos.json")
     .then(response => response.json())
     .then(data => showArticles(data))
     .catch(console.error);
